@@ -20,9 +20,9 @@ body{
     grid-template-columns: 1fr 5fr;
 }
 aside{
-    
+
     background: linear-gradient(90deg, #301F81 10%, #0F0441 90%);
-    height: 100vh;
+    height: 100vh !important;
 }
 
 .side-header{
@@ -135,6 +135,10 @@ aside{
 
 /* body */
 
+.section-body{
+    flex: 1;
+}
+
 .card{
 border-radius: 20px !important;
 }
@@ -154,4 +158,45 @@ border-radius: 20px !important;
     border-radius: 16px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
+}
+
+.footer-div p{
+    color: rgba(112, 126, 174, 1) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.footer-div p span{
+    color: rgba(112, 126, 174, 1) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+.footer-link a{
+    color: rgba(112, 126, 174, 1) !important;
+    text-decoration: none;
+    font-size: 14px  !important;
+    font-weight: 500 !important;
+}
+
+.div-body{
+    position: relative !important;
+    
+}
+
+.card-employee{
+    visibility: hidden !important;
+    position: absolute !important;
+    left: calc(25% );
+}
+
+.card-employee-edit{
+    visibility: hidden !important;
+    position: absolute !important;
+    left: calc(25% );
+}
+
+.employee-delete{
+    visibility: hidden !important;
+    position: absolute !important;
+    left: calc(25% );
 }

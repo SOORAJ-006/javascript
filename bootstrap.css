@@ -1,0 +1,155 @@
+:root{
+    --bs-border-radius: 10px !important;
+}
+
+.card{
+    
+    font-weight: 500 !important;
+    border-color: transparent !important;
+}
+
+.alert h3{
+    font-size: 16px !important;
+    font-weight: 500;
+}
+
+.alert p{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance : none;
+    background : #4318FF !important; 
+    box-shadow: none !important;  
+    border-color: #4318FF; 
+  }
+  .star::after{
+    content: '*';
+    color: red;
+  }
+  .form-control{
+    padding: 10px;
+    
+  }
+
+  .form-control-color:not(:disabled):not([readonly]){
+    width: 100%;
+  }
+
+.form-control:focus , .form-select:focus{
+    box-shadow: none !important;
+    border-color: #4318FF !important;
+}
+
+.form-check-input:checked{
+    box-shadow: none !important;
+    background-color: #4318FF !important;
+    border-color: #4318FF !important;
+}
+
+.form-check-input[type=checkbox]{
+    box-shadow: none !important; 
+}
+
+.form-check-input:checked[type=checkbox]{
+    background-color: #4318FF !important;
+}
+
+.footer, .card{   
+    border-radius: 15px;
+}
+
+.form-control::placeholder{
+    color:  #949DB9 !important;;
+}
+
+.txt-color{
+    color: #2B3674 !important;
+    font-weight: 500;
+}
+.txt-in{
+    font-size: 12px !important;
+    padding: 10px 10px !important;
+}
+.txt-400{
+    font-weight: 400 !important;
+}
+.card_basic, .card_advanced, .contact{
+    width: 50%;
+}
+
+.rounded{
+    border-radius: 20px !important;
+}
+
+.file-upload{
+    display: none;
+}
+
+.upload{
+    border: 2px dashed #949DB9;
+    border-radius: 15px;
+    color: #4318FF;
+    padding: 20px;
+    background-color:#FAFEFC
+}
+
+.upload > i{
+    font-size: 25px !important;
+}
+
+.upload-h6{
+    color: #8F9BBA !important;
+}
+
+.card-employee, .card-employee-edit, .employee-delete{
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 15px;
+    width: 50%;
+}
+
+.bg-color{
+    background-color: #4318FF !important;
+}
+
+.header h5{
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+.header h6{
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+.card-heading{
+    font-size: 24px !important;
+    font-weight: 700 !important;
+}
+.btn{
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 16px !important;
+}
+
+.btn-none{
+    color: #4318FF !important;
+}
+
+@media screen and (max-width: 850px) {
+    .card{
+        width: 100%;
+    }
+    .form{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1037px){
+    .template{
+        flex-direction: column;
+    }
+}
+
