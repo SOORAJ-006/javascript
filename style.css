@@ -2,6 +2,8 @@
     --blue: rgba(43, 54, 116, 1) !important;
 }
 
+
+
 img{
     max-width: 100% !important;
 }
@@ -22,7 +24,7 @@ body{
 aside{
 
     background: linear-gradient(90deg, #301F81 10%, #0F0441 90%);
-    height: 100vh !important;
+    height: 100vh  !important;
 }
 
 .side-header{
@@ -178,19 +180,24 @@ border-radius: 20px !important;
     font-weight: 500 !important;
 }
 
-.div-body{
-    position: relative !important;
+/* .div-body{
     
+    
+} */
+
+section{
+    position: relative !important;
 }
 
 .card-employee{
     visibility: hidden !important;
     position: absolute !important;
     left: calc(25% );
+    /* height: 80vh !important; */
 }
 
 .card-employee-edit{
-    visibility: hidden !important;
+    visibility: visible !important;
     position: absolute !important;
     left: calc(25% );
 }
@@ -199,4 +206,41 @@ border-radius: 20px !important;
     visibility: hidden !important;
     position: absolute !important;
     left: calc(25% );
+    top: calc(35%);
+}
+
+.card-body{
+    position: relative !important;
+}
+
+.btn-close{
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+}
+
+.btn-cancel{
+    background-color: rgba(234, 230, 251, 1);
+}
+
+.table-head tr th{
+    color: rgba(139, 149, 183, 1) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.search-box-top{
+    position: relative  !important;
+}
+.search-icon{
+    position: absolute !important;
+    top: 7px;
+    left: 20px;
+    font-size: 14px !important;
+    color: rgba(43, 54, 116, 1) !important;
+
+}
+
+.upload-image{
+    max-width: fit-content;
 }
