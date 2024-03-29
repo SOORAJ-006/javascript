@@ -185,35 +185,68 @@ border-radius: 20px !important;
     
 } */
 
-section{
+.contain{
     position: relative !important;
+    
 }
 
-.card-employee{
-    visibility: hidden !important;
+/* .content{
+    filter: blur(5px);
+} */
+
+#addEmployee{
+    display: none;
     position: absolute !important;
     left: calc(25% );
-    /* height: 80vh !important; */
+    top: 40px !important;
+    /* height: 90vh !important; */
+    /* filter: blur(0px) !important; */
 }
 
-.card-employee-edit{
-    visibility: visible !important;
+#empEdit{
+    display: none;
+    position: absolute !important;
+    left: calc(25% );
+    top: 40px !important;
+}
+
+#empDelete{
+    display: none;
+    position: absolute !important;
+    left: calc(50% - 118px);
+    top: calc(50% - 90px);
+}
+
+.employee-details{
+    display: none !important;
     position: absolute !important;
     left: calc(25% );
 }
 
-.employee-delete{
-    visibility: hidden !important;
-    position: absolute !important;
-    left: calc(25% );
-    top: calc(35%);
+#detailBox{
+    right: 10px !important;
+    top: 152px !important;
+    display: none;
+    border: 1px solid rgba(211, 216, 226, 1) !important;
+}
+
+#detailBox i{
+    color: rgba(139, 149, 183, 1) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+#detailBox span{
+    color: var(--blue) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
 }
 
 .card-body{
     position: relative !important;
 }
 
-.btn-close{
+#btnClose{
     position: absolute !important;
     top: 10px !important;
     right: 10px !important;
@@ -241,6 +274,40 @@ section{
 
 }
 
+.card-body-details{
+    position: relative;
+}
+
 .upload-image{
     max-width: fit-content;
+}
+
+.div-round{
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50% !important;
+    border: 5px solid #ffff !important;
+}
+
+.div-round-img{
+    border-radius: 50% !important;
+}
+
+.employee-details-name h3{
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: var(--blue);
+}
+
+.employee-details-name p{
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: rgba(112, 126, 174, 1);
+}
+
+.label-card{
+    width: 90% !important;
+    box-shadow: 0px 18px 40px 0px rgba(112, 144, 176, 0.12);
+
+    
 }
