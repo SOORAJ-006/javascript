@@ -118,7 +118,7 @@
                                     <form action="">
 
                                     
-                                    <table  class="table">
+                                    <table id=""  class="table">
                                         <thead class="table-head">
                                             <tr>
                                                 <th scope="col">Sl.No <i class="fa-solid fa-chevron-down"></i></th>
@@ -132,54 +132,10 @@
 
                                             </tr>
                                         </thead>
-                                        <tbody id="tbl">
-                                            <tr class="position-relative">
-                                                <th scope="row">1</th>
-                                                <td id="name">Mr. Michael Johnson</td>
-                                                <td>michaeljohnson@example.com</td>
-                                                <td>5551234567</td>
-                                                <td>Male</td>
-                                                <td>10 December 1985</td>
-                                                <td>USA</td>
-                                                <td class=""><i class="fa-solid fa-ellipsis"
-                                                        onclick="display('detailBox')"></i></td>
-                                                <div class="card  position-absolute z-3 p-3" id="detailBox">
-                                                    <div class="d-flex gap-3 align-items-center mb-2"><i
-                                                            class="fa-solid fa-eye"></i> <span>View Details</span></div>
-                                                    <div class="d-flex gap-3 align-items-center mb-2"
-                                                        onclick="display('empEdit')"><i class="fa-solid fa-pen"></i>
-                                                        <span>Edit</span></div>
-                                                    <div class="d-flex gap-3 align-items-center mb-2"
-                                                        onclick="display('empDelete')"><i class="fa-solid fa-trash"></i>
-                                                        <span>Delete</span></div>
-                                                </div>
-                                            </tr>
+                                        <tbody id="tableBody">
+                                            
 
-                                            <!-- testing table  -->
-
-                                            <!-- <tr class="position-relative">
-                                                <th scope="row"></th>
-                                                <td id="Name"></td>
-                                                <td id="Email"></td>
-                                                <td id="Mob"></td>
-                                                <td id="Gender"></td>
-                                                <td id="Dob"></td>
-                                                <td id="Country"></td>
-                                                <td class=""><i class="fa-solid fa-ellipsis"
-                                                        onclick="display('detailBox')"></i></td>
-                                                <div class="card  position-absolute z-3 p-3" id="detailBox">
-                                                    <div class="d-flex gap-3 align-items-center mb-2"><i
-                                                            class="fa-solid fa-eye"></i> <span>View Details</span></div>
-                                                    <div class="d-flex gap-3 align-items-center mb-2"
-                                                        onclick="display('empEdit')"><i class="fa-solid fa-pen"></i>
-                                                        <span>Edit</span></div>
-                                                    <div class="d-flex gap-3 align-items-center mb-2"
-                                                        onclick="display('empDelete')"><i class="fa-solid fa-trash"></i>
-                                                        <span>Delete</span></div>
-                                                </div>
-                                            </tr> -->
-
-                                            <!-- testing table -->
+                                            <!-- table body -->
 
                                         </tbody>
                                     </table>
@@ -217,9 +173,8 @@
                         <h2 class="card-heading pb-3 txt-color">Add Employee</h2>
                     </header>
 
-                    <form id="form">
                         <div class="card-bd">
-                            <input type="file" class="file-upload">
+                            <!-- <input type="file" class="file-upload">
                             <label for=""
                                 class="upload d-flex justify-content-center flex-column align-items-center mb-3">
                                 <i class="bi bi-upload"></i>
@@ -227,23 +182,23 @@
                                     <h5>Upload Image</h5>
                                     <h6 class="upload-h6">PNG, JPG files are allowed</h6>
                                 </div>
-                            </label>
+                            </label> -->
 
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                     <label for="" class="form-label txt-color star mb-3">Salutaton </label>
-                                    <select id="salutation" class="form-select form-select-lg  text-secondary txt-in"
+                                    <select  id="addSalutation" class="form-select form-select-lg  text-secondary txt-in"
                                         aria-label="Large select example" required>
                                         <option selected class="">select</option>
-                                        <option value="mr">Mr</option>
-                                        <option value="mrs">Mrs</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
                                         
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                     <label for="" class="form-label txt-color star ">First Name </label>
                                     <div class="input-group ">
-                                        <input id="fName" type="text" required class="form-control txt-in" placeholder="john"
+                                        <input  id="addFirstName" type="text" required class="form-control txt-in" placeholder="john"
                                             aria-label="john" aria-describedby="basic-addon2">
 
                                     </div>
@@ -251,7 +206,7 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                     <label for="" class="form-label txt-color star ">Last Name </label>
                                     <div class="input-group ">
-                                        <input id="lName" type="text" required class="form-control txt-in" placeholder="doe"
+                                        <input  id="addLastName" type="text" required class="form-control txt-in" placeholder="doe"
                                             aria-label="doe" aria-describedby="basic-addon2">
                                     </div>
                                 </div>
@@ -263,7 +218,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star ">Email Address </label>
                                     <div class="input-group ">
-                                        <input id="email" type="email" required class="form-control txt-in"
+                                        <input  id="addEmail" type="email" required class="form-control txt-in"
                                             placeholder="mail@simmple.com" aria-label="john"
                                             aria-describedby="basic-addon2">
 
@@ -272,13 +227,36 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Mobile Number </label>
                                     <div class="input-group ">
-                                        <input id="mob" type="text" required class="form-control txt-in"
+                                        <input  id="addPhone" type="text" required class="form-control txt-in"
                                             placeholder="enter your mobile number" aria-label="doe"
                                             aria-describedby="basic-addon2">
 
                                     </div>
                                 </div>
                             </div>
+          
+                            <div class="row ">
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                    <label for="" class="form-label txt-color star ">Username</label>
+                                    <div class="input-group ">
+                                        <input  id="adduserName" type="txt" required class="form-control txt-in"
+                                            placeholder="enter Username" aria-label="john"
+                                            aria-describedby="basic-addon2">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                    <label for="" class="form-label txt-color star">Password </label>
+                                    <div class="input-group ">
+                                        <input  id="addPassword" type="password" required class="form-control txt-in"
+                                            placeholder="enter your password" aria-label="doe"
+                                            aria-describedby="basic-addon2">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
 
                             <!-- third -->
 
@@ -286,7 +264,7 @@
                                 <div class="col-lg-6 col-md-12 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Date of Birth </label>
                                     <div class="input-group ">
-                                        <input id="dob" type="date" required class="form-control txt-in">
+                                        <input  id="addDob" type="date" required class="form-control txt-in">
 
                                     </div>
                                 </div>
@@ -295,14 +273,14 @@
                                     <label for="" class="form-label txt-color star">Gender </label>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input gender" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio1" value="male">
+                                            <input class="form-check-input gender" name="gender" type="radio" id="maleGender"
+                                                 value="male">
                                             <label class="form-check-label  txt-color txt-400"
                                                 for="inlineRadio1">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input gender" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio2" value="female">
+                                            <input class="form-check-input gender" name="gender" type="radio" id="addGender"
+                                                 value="female">
                                             <label class="form-check-label  txt-color txt-400"
                                                 for="inlineRadio2">Female</label>
                                         </div>
@@ -315,7 +293,19 @@
                                 <div class="col-12 mb-3">
                                     <label for="" class="form-label txt-color star">Address </label>
                                     <div class="input-group ">
-                                        <input id="address" type="text" required class="form-control txt-in"
+                                        <input  id="addAddress" type="text" required class="form-control txt-in"
+                                            placeholder="enter address" aria-label="john"
+                                            aria-describedby="basic-addon2">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="" class="form-label txt-color star">Qualification </label>
+                                    <div class="input-group ">
+                                        <input  id="addqualification" type="text" required class="form-control txt-in"
                                             placeholder="enter address" aria-label="john"
                                             aria-describedby="basic-addon2">
 
@@ -328,7 +318,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Country </label>
-                                    <select id="country" class="form-select form-select-lg  text-secondary txt-in"
+                                    <select  id="addCountry" class="form-select form-select-lg  text-secondary txt-in"
                                         aria-label="Large select example" required>
                                         <option selected class="">select</option>
                                         <option value="1">One</option>
@@ -338,7 +328,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">State </label>
-                                    <select id="state" class="form-select form-select-lg  text-secondary txt-in"
+                                    <select id="addState" name="state" class="form-select form-select-lg  text-secondary txt-in"
                                         aria-label="Large select example" required>
                                         <option selected class="">select</option>
                                         <option value="1">One</option>
@@ -354,14 +344,14 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">City </label>
                                     <div class="input-group ">
-                                        <input id="city" type="text" required class="form-control txt-in" placeholder="enter city"
+                                        <input  id="addCity" type="text" required class="form-control txt-in" placeholder="enter city"
                                             aria-label="john" aria-describedby="basic-addon2">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Pin/Zip </label>
                                     <div class="input-group">
-                                        <input id="pin" type="text" required class="form-control txt-in"
+                                        <input  type="text" id="addPin" required class="form-control txt-in"
                                             placeholder="enter pin/zip" aria-label="doe"
                                             aria-describedby="basic-addon2">
                                     </div>
@@ -372,14 +362,18 @@
                                         <div class="button ">
                                             <button class="btn btn-lg bg-light  ms-1 btn-none p-3"
                                                 type="reset">Cancel</button>
+
+                                                <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3"
+                                                 onclick="addEmpsubmit() ">
+                                                Add Employee</button>
                                         
-                                                <input type="submit"  class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3" value="Add Employee">
+                                                
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                   
 
                     <!-- close btn -->
 

@@ -1,73 +1,162 @@
 
-function Close(id){
+function Close(id) {
     let idd = id;
     document.getElementById(idd).style.display = "none";
-    document.getElementById('content').style.filter = "blur(0px)" ;
+    document.getElementById('content').style.filter = "blur(0px)";
 }
 
-function display(id){
+function display(id) {
     let idd = id;
     document.getElementById(idd).style.display = "block";
-    document.getElementById('content').style.filter = "blur(3px)" ;
+    document.getElementById('content').style.filter = "blur(3px)";
 }
 
-// let s = 0;
-
-// let form = document.getElementById('form');
-// form.addEventListener('submit' , function(event){
-//     event.preventDefault();
-
-//     let salutation = document.getElementById('salutation').value;
-//     let fName = document.getElementById('fName').value;
-//     let lName = document.getElementById('lName').value;
-//     let email = document.getElementById('email').value;
-//     let mob = document.getElementById('mob').value;
-//     let dob = document.getElementById('dob').value;
-//     let address = document.getElementById('address').value;
-//     let country = document.getElementById('country').value;
-//     let state = document.getElementById('state').value;
-//     let city = document.getElementById('city').value;
-//     let pin = document.getElementById('pin').value;
-//     let gender = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
-
-//     // showing data in the home page
-
-//     let Namee = salutation + ' ' +  fName +  ' ' + lName
-//         console.log(Namee);
-    
-//     // document.getElementById('Name').innerHTML = Namee;
-//     // let Email = document.getElementById('email');
-//     // let Mob = document.getElementById('mob');
-//     // let Dob = document.getElementById('dob');
-//     // let Country = document.getElementById('country');
-
-//     let tr = document.createElement('tr');
-//     let tds = tr.appendChild(document.createElement('td'));
-//     let td1 = tr.appendChild(document.createElement('td'));
-//     let td2 = tr.appendChild(document.createElement('td'));
-//     let td3 = tr.appendChild(document.createElement('td'));
-//     let td4 = tr.appendChild(document.createElement('td'));
-//     let td5 = tr.appendChild(document.createElement('td'));
-//     let td6 = tr.appendChild(document.createElement('td'));
-//     let td7 = tr.appendChild(document.createElement('td'));
-
-
-
-//     tds.innerHTML = ++s;
-//     td1.innerHTML = Namee;
-//     td2.innerHTML = email;
-//     td3.innerHTML = mob;
-//     td4.innerHTML = gender;
-//     td5.innerHTML = dob;
-//     td6.innerHTML = country;
-//     //  
-//     document.getElementById('tbl').appendChild(tr);
-    
-// })
+fetchDaata();
+// fetching data from the json
+function fetchDaata(){
 
 
 
 
-fetch("http://localhost:3000/employees").then((data) =>{
-    console.log(data);
+fetch('http://localhost:3000/employees').then((data) => {
+    // console.log(data);
+    return data.json();
+}).then((objectData) => {
+    // console.log(objectData[0].salutation);
+
+    let sl = 0;
+
+console.log(objectData);
+
+    let tableData = "";
+    objectData.map((values) => {
+        tableData += `<tr class="position-relative">
+        <td id="id">${'#' + ++sl} </td>
+        <td id="Name">${values.salutation + " " + values.firstName + " " + values.lastName}</td>
+        <td id="Email">${values.email}</td>
+        <td id="Mob">${values.phone}</td>
+        <td id="Gender">${values.gender}</td>
+        <td id="Dob">${values.dob}</td>
+        <td id="Country">${values.country}</td>
+
+        <td class=""><i class="fa-solid fa-ellipsis" onclick="display('detailBox')"></i></td>
+        <div class="card  position-absolute z-3 p-3" id="detailBox">
+            <div class="d-flex gap-3 align-items-center mb-2"><i
+                    class="fa-solid fa-eye"></i> <span>View Details</span></div>
+            <div class="d-flex gap-3 align-items-center mb-2"
+                onclick="display('empEdit')"><i class="fa-solid fa-pen"></i>
+                <span>Edit</span></div>
+            <div class="d-flex gap-3 align-items-center mb-2"
+                onclick="display('empDelete')"><i class="fa-solid fa-trash"></i>
+                <span>Delete</span></div>
+        </div>
+
+        </tr>`;
+    });
+
+    document.getElementById("tableBody")
+        .innerHTML = tableData;
 })
+}
+
+
+
+function addEmpsubmit() {
+    
+    const salutation = document.getElementById("addSalutation").value;
+    const firstName = document.getElementById("addFirstName").value;
+    const lastName = document.getElementById("addLastName").value;
+    const email = document.getElementById("addEmail").value;
+    const dob = document.getElementById("addDob").value;
+    const phone = document.getElementById("addPhone").value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const address = document.getElementById("addAddress").value;
+    const country = document.getElementById("addCountry").value;
+    const state = document.getElementById("addState").value;
+    const city = document.getElementById("addCity").value;
+    const pin = document.getElementById("addPin").value;
+    const username = document.getElementById("adduserName").value;
+    const password = document.getElementById("addPassword").value;
+
+    const qualifications = document.getElementById("addqualification").value;
+    const originalDateString = dob;
+
+    // Parse the original date string
+    let parts = originalDateString.split("-");
+    let year = parts[0];
+    let month = parts[1];
+    let day = parts[2];
+    // Construct the reversed date string
+    let reversedDateString = `${day}-${month}-${year}`;
+    console.log(reversedDateString);
+    const dobb = reversedDateString;
+
+ const newData = {
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    dob:dobb,
+    gender,
+    qualifications,
+    address,
+    city,
+    state,
+    pin,
+    country,
+    username,
+    password
+      
+ }
+
+ console.log(newData);
+
+postData(newData)
+ 
+ }
+
+//  post data
+
+// function postData(newData){
+//     fetch('http://localhost:3000/employees',{
+//         method: 'POST',
+//         headers:{
+//             'content-type':'application/json'
+//         },
+//         body:JSON.stringify(newData)
+//          })
+         
+//          .then(data =>{
+//             if(!Response.ok){
+//                 throw new Error("Error");
+//             }
+           
+//             return data.json()
+//          })
+//          .catch(error => {
+//             console.error("Error:", error);       
+//          })
+//          console.log(newData);
+//     }
+
+function postData(newData) {
+    fetch('http://localhost:3000/employees', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newData)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        console.log("Data posted successfully:", data);
+        // Additional actions if needed after successful posting
+    })
+  
+}
+
+
+
