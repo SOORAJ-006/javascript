@@ -208,6 +208,7 @@ border-radius: 20px !important;
     position: absolute !important;
     left: calc(25% );
     top: 40px !important;
+    overflow: auto;
 }
 
 #empDelete{
@@ -223,10 +224,15 @@ border-radius: 20px !important;
     left: calc(25% );
 }
 
-#detailBox{
+.table-td{
+    position: relative !important;
+}
+
+#detailBox{  
+    display: none !important;
     right: 10px !important;
-    top: 152px !important;
-    display: none;
+    top: 40px !important;
+    left: 115px !important; 
     border: 1px solid rgba(211, 216, 226, 1) !important;
 }
 

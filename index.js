@@ -30,28 +30,32 @@ console.log(objectData);
 
     let tableData = "";
     objectData.map((values) => {
-        tableData += `<tr class="position-relative">
-        <td id="id">${'#' + ++sl} </td>
-        <td id="Name">${values.salutation + " " + values.firstName + " " + values.lastName}</td>
+
+        // <img src="/imges/Elipse 5.png" alt=""> 
+
+        // expoted
+
+        tableData+= `<tr>
+        <th id="id">#${++sl}</th>
+        <td id="Name">${values.salutation} ${values.firstName} ${values.lastName}</td>
         <td id="Email">${values.email}</td>
         <td id="Mob">${values.phone}</td>
         <td id="Gender">${values.gender}</td>
         <td id="Dob">${values.dob}</td>
         <td id="Country">${values.country}</td>
+        <td><div class="dropdown">
+            <button class="btn btn-secondary " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">View Details</a></li>
+              <li onclick="editEmployee('${values.id}')"><a class="dropdown-item" href="#">Edit </a></li>
+              <li onclick="deleteFormOpen"><a class="dropdown-item" href="#">Delete</a></li>
+            </ul>
+          </div></td>
+    </tr>`
 
-        <td class=""><i class="fa-solid fa-ellipsis" onclick="display('detailBox')"></i></td>
-        <div class="card  position-absolute z-3 p-3" id="detailBox">
-            <div class="d-flex gap-3 align-items-center mb-2"><i
-                    class="fa-solid fa-eye"></i> <span>View Details</span></div>
-            <div class="d-flex gap-3 align-items-center mb-2"
-                onclick="display('empEdit')"><i class="fa-solid fa-pen"></i>
-                <span>Edit</span></div>
-            <div class="d-flex gap-3 align-items-center mb-2"
-                onclick="display('empDelete')"><i class="fa-solid fa-trash"></i>
-                <span>Delete</span></div>
-        </div>
-
-        </tr>`;
+    let abc = `${values.id}` ;
     });
 
     document.getElementById("tableBody")
@@ -112,33 +116,13 @@ function addEmpsubmit() {
 
  console.log(newData);
 
-postData(newData)
- 
+
+ (newData)
+    
  }
 
-//  post data
+//  post data  
 
-// function postData(newData){
-//     fetch('http://localhost:3000/employees',{
-//         method: 'POST',
-//         headers:{
-//             'content-type':'application/json'
-//         },
-//         body:JSON.stringify(newData)
-//          })
-         
-//          .then(data =>{
-//             if(!Response.ok){
-//                 throw new Error("Error");
-//             }
-           
-//             return data.json()
-//          })
-//          .catch(error => {
-//             console.error("Error:", error);       
-//          })
-//          console.log(newData);
-//     }
 
 function postData(newData) {
     fetch('http://localhost:3000/employees', {
@@ -155,8 +139,74 @@ function postData(newData) {
         console.log("Data posted successfully:", data);
         // Additional actions if needed after successful posting
     })
-  
+    Close('addEmployee');
 }
 
 
+// edit employee
+
+
+//  edit employee Get
+
+function editEmployee(empid){
+
+   console.log(empid);
+
+   let a = document.getElementById('empEdit')
+   a.style.display = "block";
+  let b = document.getElementById('content')
+  b.style.filter = "blur(3px)";
+
+//   fetching data from json and planting it to empEdit
+
+fetch(`http://localhost:3000/employees/${empid}` , {
+    method: "GET" ,
+    headers: {
+        "Content-Type": "application/json",
+    },
+}) //getting all the data in the id
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data); //displaying all the data
+
+        document.getElementById('editSalutation').value = data.salutation;
+        document.getElementById('editFirstName').value = data.firstName;
+        document.getElementById('editLastName').value = data.lastName;
+        document.getElementById('editEmail').value = data.email;
+        document.getElementById('editPhone').value = data.phone;
+        document.getElementById('editUserName').value = data.username;
+        document.getElementById('editPassword').value = data.password;
+        
+        document.getElementById('editAddress').value = data.address;
+        document.getElementById('editQualification').value = data.qualifications;
+        document.getElementById('editCountry').value = data.country;
+        document.getElementById('editState').value = data.state;
+        document.getElementById('editCity').value = data.city;
+        document.getElementById('editPin').value = data.pin;
+        
+        // dob change
+
+        const [day , month , year ] = data.dob.split("-");
+        const newDob = `${year}-${month}-${day}`;
+        document.getElementById('editDob').value = newDob;
+
+        // gender  
+
+        document.querySelector(`input[name='editGender'][value='${data.gender}']`).checked = true;
+
+        // const gender = document.querySelector('input[name="gender"]:checked').value;
+    })
+
+    let editsubmit = document.getElementById("saveEdit");
+    editsubmit.addEventListener("click",() =>{
+        saveChanges(empid);
+    })
+        
+}
+
+// posting edited data to json
+
+function saveChanges(empid){
+    console.log(empid);
+}
 
