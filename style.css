@@ -321,3 +321,9 @@ border-radius: 20px !important;
 /* .footer-view{
     width: 100%;
 } */
+
+.emp-img{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 12px !important;
+}

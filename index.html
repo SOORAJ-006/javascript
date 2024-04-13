@@ -91,8 +91,8 @@
 
                     <!-- body -->
 
-                    <div class="section-body mb-3">
-                        <div class="card">
+                    <div class="section-body d-flex flex-column  mb-3">
+                        <div class="card mb-3">
                             <div class="card-body">
                                 <div class="header-card d-flex justify-content-between">
                                     <div class="card-header-heading d-flex align-items-center gap-2 p-2">
@@ -145,6 +145,28 @@
 
                             </div>
                         </div>
+
+                        <!-- pagination -->
+
+                        <nav aria-label="Page navigation example d-flex ">
+                            <ul class="pagination justify-content-end">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+
+
                     </div>
 
                     <!-- footer -->
@@ -174,15 +196,15 @@
                     </header>
 
                         <div class="card-bd">
-                            <!-- <input type="file" class="file-upload">
-                            <label for=""
+                            <input type="file" class="file-upload" id="img-upload">
+                            <label for="img-upload" "
                                 class="upload d-flex justify-content-center flex-column align-items-center mb-3">
                                 <i class="bi bi-upload"></i>
                                 <div class="d-flex flex-column align-items-center header">
                                     <h5>Upload Image</h5>
                                     <h6 class="upload-h6">PNG, JPG files are allowed</h6>
                                 </div>
-                            </label> -->
+                            </label>
 
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
@@ -191,9 +213,9 @@
                                         aria-label="Large select example" required>
                                         <option selected class="">select</option>
                                         <option value="Mr">Mr</option>
-                                        <option value="Mrs">Mrs</option>
-                                        
+                                        <option value="Mrs">Mrs</option>    
                                     </select>
+                                    <label id="addSalutationError"></label>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                     <label for="" class="form-label txt-color star ">First Name </label>
@@ -202,6 +224,7 @@
                                             aria-label="john" aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addFirstNameError"></label>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                     <label for="" class="form-label txt-color star ">Last Name </label>
@@ -209,6 +232,8 @@
                                         <input  id="addLastName" type="text" required class="form-control txt-in" placeholder="doe"
                                             aria-label="doe" aria-describedby="basic-addon2">
                                     </div>
+                                    <label id="addLastNameError"></label>
+
                                 </div>
                             </div>
 
@@ -223,6 +248,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addEmailError"></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Mobile Number </label>
@@ -232,6 +258,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addPhoneError"></label>
                                 </div>
                             </div>
           
@@ -244,6 +271,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="adduserNameError"></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Password </label>
@@ -253,6 +281,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addPasswordError"></label>
                                 </div>
                             </div>
 
@@ -267,24 +296,26 @@
                                         <input  id="addDob" type="date" required class="form-control txt-in">
 
                                     </div>
+                                    <label id="addDobError"></label>
                                 </div>
 
                                 <div class="col-lg-6 col-md-12 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Gender </label>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input gender" name="gender" type="radio" id="maleGender"
+                                            <input class="form-check-input gender" name="gender" type="radio" id="forMale"
                                                  value="male">
                                             <label class="form-check-label  txt-color txt-400"
                                                 for="inlineRadio1">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input gender" name="gender" type="radio" id="addGender"
+                                            <input class="form-check-input gender" name="gender" type="radio" id="forFemale"
                                                  value="female">
                                             <label class="form-check-label  txt-color txt-400"
                                                 for="inlineRadio2">Female</label>
                                         </div>
                                     </div>
+                                    <label id="errorGender"></label>
                                 </div>
                             </div>
 
@@ -298,6 +329,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addAddressError"></label>
                                 </div>
                             </div>
 
@@ -310,6 +342,7 @@
                                             aria-describedby="basic-addon2">
 
                                     </div>
+                                    <label id="addqualificationError"></label>
                                 </div>
                             </div>
 
@@ -325,6 +358,7 @@
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
                                     </select>
+                                    <label id="addCountryError"></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">State </label>
@@ -335,6 +369,7 @@
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
                                     </select>
+                                    <label id="addStateError"></label>
                                 </div>
                             </div>
 
@@ -347,6 +382,7 @@
                                         <input  id="addCity" type="text" required class="form-control txt-in" placeholder="enter city"
                                             aria-label="john" aria-describedby="basic-addon2">
                                     </div>
+                                    <label id="addCityError"></label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <label for="" class="form-label txt-color star">Pin/Zip </label>
@@ -355,6 +391,7 @@
                                             placeholder="enter pin/zip" aria-label="doe"
                                             aria-describedby="basic-addon2">
                                     </div>
+                                    <label id="addPinError"></label>
                                 </div>
                                 <!-- button -->
                                 <div class="d-flex justify-content-end">
@@ -363,8 +400,7 @@
                                             <button class="btn btn-lg bg-light  ms-1 btn-none p-3"
                                                 type="reset">Cancel</button>
 
-                                                <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3"
-                                                 onclick="addEmpsubmit() ">
+                                                <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3" id="addEmployeeBtn">
                                                 Add Employee</button>
                                         
                                                 
@@ -393,17 +429,17 @@
                         <h2 class="card-heading pb-3 txt-color">Edit Employee</h2>
                     </header>
 
-                    <!-- <div class="card-bd">
+                    <div class="card-bd">
                         <div class="d-flex gap-3 align-items-center">
-                            <input type="file" class="file-upload">
-                            <label 
+                            <input type="file" class="file-upload" id="imge-upload" onchange="avatarPreview()">
+                            <label for="imge-upload"
                                 class="upload upload-image d-flex justify-content-center flex-column align-items-center mb-3">
-                                <img src="images\person.png" alt="">
+                                <img  id="image-box" src="" alt="">
                             </label>
-                            <div class="button ">
-                                <button class="btn btn-lg bg-light btn-cancel ms-1 btn-none p-3">Change</button>
-                            </div>
-                        </div> -->
+                            <label for="imge-upload" class="btn btn-lg bg-light btn-cancel ms-1 btn-none p-3">
+                                change
+                            </label>
+                        </div>
 
 
                         <div class="row">
@@ -416,6 +452,7 @@
                                     <option value="Mrs">Mrs</option>
                                     
                                 </select>
+                                <label id="editSalutationError"></label>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                 <label  class="form-label txt-color star ">First Name </label>
@@ -424,6 +461,8 @@
                                         aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editFirstNameError"></label>
+
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
                                 <label  class="form-label txt-color star ">Last Name </label>
@@ -431,6 +470,8 @@
                                     <input id="editLastName" type="text" class="form-control txt-in" placeholder="doe" aria-label="doe"
                                         aria-describedby="basic-addon2">
                                 </div>
+                                <label id="editLastNameError"></label>
+
                             </div>
                         </div>
 
@@ -444,6 +485,8 @@
                                         aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editEmailError"></label>
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label  class="form-label txt-color star">Mobile Number </label>
@@ -453,6 +496,8 @@
                                         aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editPhoneError"></label>
+
                             </div>
                         </div>
 
@@ -467,6 +512,8 @@
                                         aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editUserNameError"></label>
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label for="" class="form-label txt-color star">Password </label>
@@ -476,6 +523,8 @@
                                         aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editPasswordError"></label>
+
                             </div>
                         </div>
 
@@ -488,6 +537,8 @@
                                     <input id="editDob" type="date" class="form-control txt-in">
 
                                 </div>
+                                <label id="editDobError"></label>
+
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-6 mb-3">
@@ -495,17 +546,19 @@
                                 <div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="editGender"
-                                            id="editMale" value="male">
+                                             value="male" id="editMale">
                                         <label class="form-check-label  txt-color txt-400"
-                                            for="inlineRadio1">Male</label>
+                                            >Male</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="editGender"
-                                            id="editFemale" value="female">
+                                             value="female" id="editFemale">
                                         <label class="form-check-label  txt-color txt-400"
-                                            for="inlineRadio2">Female</label>
+                                             >Female</label>
                                     </div>
                                 </div>
+                                <label id="editGenderError"></label>
+
                             </div>
                         </div>
 
@@ -518,6 +571,8 @@
                                         aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editAddressError"></label>
+
                             </div>
                         </div>
 
@@ -532,6 +587,8 @@
                                         aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editQualificationError"></label>
+
                             </div>
                         </div>
 
@@ -547,6 +604,8 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
+                                <label id="editCountryError"></label>
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label  class="form-label txt-color star">State </label>
@@ -557,6 +616,8 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
+                                <label id="editStateError"></label>
+
                             </div>
                         </div>
 
@@ -570,6 +631,8 @@
                                         aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editCityError"></label>
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label  class="form-label txt-color star">Pin/Zip </label>
@@ -578,6 +641,8 @@
                                         aria-label="doe" aria-describedby="basic-addon2">
 
                                 </div>
+                                <label id="editPinError"></label>
+
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -618,7 +683,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="row">
                                 <div class="button ">
-                                    <button class="btn btn-lg bg-light  ms-1 btn-none p-3">Cancel</button>
+                                    <button class="btn btn-lg bg-light  ms-1 btn-none p-3" onclick="Close('empDelete')">Cancel</button>
                                     <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3 " id="deleteEmployee">Delete</button>
                                 </div>
                             </div>
@@ -640,6 +705,7 @@
     </section>
 
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
