@@ -14,32 +14,68 @@ function display(id) {
 }
 
 fetchData();
+
+let currentPage = 1;
+let itemsPerPage = 5;
+let totalItems = 0;
+let tableContents =[];
+
+
 // fetching data from the json
-function fetchData(){
-
-    var page = 1;
-    var postPerPage = 5;
-    var skip = (page - 1) * postPerPage;
-
-    fetch(`http://localhost:3000/employees/`).then((data) => {
-    // console.log(data);
+async function fetchData(){
+     await fetch(`http://localhost:3000/employees/`)
+    .then((data) => {
+  
     return data.json();
 }).then((objectData) => {
-    // console.log(objectData[0].salutation);
+  tableContents = objectData.reverse();
+  console.log("table array" + tableContents);   
 
-    let sl = 0;
+// table count
+document.getElementById('count').addEventListener('change', () =>{
+  dataCount = document.getElementById('count');
+  itemsPerPage = parseInt(dataCount.value);
+  console.log(itemsPerPage);
+  displayData(currentPage);
+  pageNation();
+  
+});
 
-console.log(objectData);
+displayData(currentPage);
+pageNation();
 
-    let tableData = "";
-    objectData.map((values) => {
+})
+}
 
-        // <img src="/imges/Elipse 5.png" alt=""> 
 
-        // expoted
+const input = document.getElementById('input')
 
-        tableData+= `<tr>
-        <th id="id">#${++sl}</th>
+
+function displayData(page){
+
+  // search bar using filter
+     let querry = input.value;
+     console.log("querry :" + querry);
+
+  // end
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage
+
+  let pageinatedData = tableContents.slice(start,end);
+  console.log("Converted data is" , tableContents);
+
+  let tableData = "";
+  let i = start;
+
+  pageinatedData.map((values) => {
+    i++;
+
+    totalItems++;
+
+    let slNumber = i > 9 ? `#${i}` : `#0${i}`;
+
+    tableData+= `<tr>
+        <th id="id">${slNumber}</th>
         <td id="Name"><img class="emp-img" src="http://localhost:3000/employees/${values.id}/avatar"> ${values.salutation} ${values.firstName} ${values.lastName}</td>
         <td id="Email">${values.email}</td>
         <td id="Mob">${values.phone}</td>
@@ -59,13 +95,79 @@ console.log(objectData);
         </td>
     </tr>`
 
-    console.log("table"+"  " +objectData.length);
+    // console.log("table"+"  " + objectData.length);
 
     });
 
     document.getElementById("tableBody").innerHTML = tableData;
-})
+    console.log("Fetch completed");
 }
+
+
+function pageNation(){
+  let totalPages = Math.ceil(tableContents.length / itemsPerPage);
+  const pageNationUl = document.getElementById('paginationContaioner')
+  pageNationUl.innerHTML = '';
+
+  // back skip button <
+
+  const backskip = document.createElement('li');
+  backskip.innerHTML = `<li class="page-item">
+  <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+  </a>
+</li>`;
+pageNationUl.appendChild(backskip);
+
+backskip.addEventListener('click', () => {
+  if(currentPage > 1 ){
+    currentPage--;
+  }
+  else{
+    currentPage = 1;
+  }
+  displayData(currentPage);
+});
+
+// skip button " 1 2 3 "
+
+for(let i = 1; i<=totalPages ;i++ ){
+  const pageItems = document.createElement('li');
+  pageItems.innerHTML =`<li class="page-item">
+  <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">${i}</span>
+  </a>
+</li>`;
+  pageNationUl.appendChild(pageItems);
+  pageItems.addEventListener('click' , () =>{
+    currentpage = i ;
+    displayData(currentPage);
+
+  });
+}
+
+  // front skipp button
+
+  const frontSkip = document.createElement('li');
+  frontSkip.innerHTML = `<li class="page-item">
+  <a class="page-link" href="#" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+  </a>
+</li>`;
+
+pageNationUl.appendChild(frontSkip);
+frontSkip.addEventListener('click' , () => {
+  if(currentPage <= totalPages - 1){
+    currentPage++;
+  }
+  else{
+    currentPage = totalPages;
+  }
+  displayData(currentPage);
+});
+}
+        
+
 
 // ---------------------------Add Form Validation-------------------------------
 
@@ -270,8 +372,8 @@ function addEmpsubmit() {
 
 //  post data -------------------------- 
 
-function postData(newData) {
-    fetch('http://localhost:3000/employees', {
+ function postData(newData) {
+     fetch('http://localhost:3000/employees', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -285,7 +387,6 @@ function postData(newData) {
     })
     .then(data => {
         console.log("Data posted successfully:", data);
-        // Additional actions if needed after successful posting
 
         // getting id of the created employee
 
@@ -300,13 +401,13 @@ function postData(newData) {
         imgObject.append("avatar", profileImg.files[0]);
         console.log("img added succesfully" , imgObject);
 
-        fetch(`http://localhost:3000/employees/${data.id}/avatar`,{
+         fetch(`http://localhost:3000/employees/${data.id}/avatar`,{
             method: "POST",
             body: imgObject,
         });
-        // tableContents.unshift(newData);
+        
         console.log(newData);
-        // displayData(currentPage);
+        
 
     })
     .then(() =>{
@@ -324,7 +425,7 @@ function postData(newData) {
 //  edit employee Get
 
 
-function editEmployee(empid){
+ async function editEmployee(empid){
 
    console.log(empid);
 
@@ -335,7 +436,7 @@ function editEmployee(empid){
 
 //   fetching data from json and planting it to empEdit
 
-fetch(`http://localhost:3000/employees/${empid}` , {
+awaitfetch(`http://localhost:3000/employees/${empid}` , {
     method: "GET" ,
     headers: {
         "Content-Type": "application/json",
@@ -539,7 +640,7 @@ function EditFormValidation(){
 // posting edited data to json
 
 
-function saveChanges(empid){
+ function saveChanges(empid){
     console.log(empid);
 
 
@@ -590,7 +691,7 @@ const newData ={
 
 console.log(newData);
 
-fetch(`http://localhost:3000/employees/${empid}` , {
+ fetch(`http://localhost:3000/employees/${empid}` , {
         method: "PUT" ,
         headers: {
             "Content-Type" : "application/json",
@@ -610,7 +711,7 @@ fetch(`http://localhost:3000/employees/${empid}` , {
         imgObject.append("avatar", profileimg.files[0]);
         console.log("img added succesfully" , imgObject);
 
-        fetch(`http://localhost:3000/employees/${empid}/avatar`,{
+         fetch(`http://localhost:3000/employees/${empid}/avatar`,{
             method: "POST",
             body: imgObject,
         });
@@ -644,10 +745,10 @@ function deleteEmployee(empid){
 }
 
 
-function confirmDelete(id){
+ function confirmDelete(id){
     console.log(id);
 
-    fetch(`http://localhost:3000/employees/${id}` , {
+     fetch(`http://localhost:3000/employees/${id}` , {
     method: "DELETE" ,
     headers: {
         'Content-Type' : 'application/json',
