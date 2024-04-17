@@ -18,15 +18,28 @@ async function viewEmployee(id) {
       console.log(data);
 
       let name = data.salutation + " " + data.firstName + " " + data.lastName;
+      let addressRest = data.city + " " + data.state + " " +data.country + " " + data.pin
       document.getElementById('name').innerHTML = name;
       document.getElementById('email').innerHTML = data.email;
       document.getElementById('phone').innerHTML = data.phone;
       document.getElementById('username').innerHTML = data.username;
       document.getElementById('address').innerHTML = data.address;
+      document.getElementById('addressRest').innerHTML = addressRest;
       document.getElementById('qualification').innerHTML = data.qualifications;
       document.getElementById('gender').innerHTML = data.gender
       document.getElementById('dob').innerHTML = data.dob;
-      document.getElementById('age').innerHTML = data.dob;
+
+      const [day, month, ageYear] = data.dob.split("-");
+      const newyear = `${ageYear}`;
+      console.log(newyear);
+
+
+      const date = new Date();
+      let year = date.getFullYear();
+      console.log(year);
+      const agee = year - newyear
+
+      document.getElementById('age').innerHTML = agee;
 
 
       // viewEmployeeImage
@@ -108,18 +121,18 @@ async function editEmployee(id) {
     const validation = EditFormValidation();
     console.log(validation);
     if (!validation) {
-      return;
+      return; 
     } else {
       saveChanges(id);
     }
   })
 }
 
-function avatarPreviewView() {
-  const preview = document.getElementById("viewEditEmpImg");
-  preview.src = URL.createObjectURL(event.target.files[0]);
+// function avatarPreviewView() {
+//   const preview = document.getElementById("viewEditEmpImg");
+//   preview.src = URL.createObjectURL(event.target.files[0]);
 
-}
+// }
 // posting edited data to json
 
 function saveChanges(id) {
@@ -204,16 +217,21 @@ function saveChanges(id) {
     .then(() => {
       swal.fire({
         icon: "success",
-        title: "ADD EMPLOYEE SUCCESSFULL",
+        title: "EMPLOYEE UPDATED SUCCESSFULL",
         showConfirmButton: false,
         timer: 1500,
-      });
+      })
+      .then(() => {
+        Close('empEdit');
+        
+        location.reload(true);
+      })
 
     })
-  Close('empEdit');
+  
 
   //  window.location.href = `view.html?${id}`; 
-  // location.reload(true);
+  // 
 
 }
 
@@ -252,7 +270,19 @@ deleteEmployee.addEventListener("click", () => {
       console.log("Deleted");
     })
 
-  window.location.href = "index.html";
+    .then(() =>{
+      swal.fire({
+          icon: "success",
+          title: "EMPLOYEE DELETED SUCCESSFULL",
+          showConfirmButton: false,
+          timer: 1500,
+    })
+      .then(() => {
+        Close('empDelete');
+        window.location.href = 'index.html'
+      })
+    })
+  
 })
 
 

@@ -197,10 +197,9 @@ border-radius: 20px !important;
 #addEmployee{
     display: none;
     position: absolute !important;
-    left: calc(25% );
+    left: calc(50% - 390px);
     top: 40px !important;
-    /* height: 90vh !important; */
-    /* filter: blur(0px) !important; */
+    
 }
 
 #empEdit{
@@ -216,12 +215,13 @@ border-radius: 20px !important;
     position: absolute !important;
     left: calc(50% - 118px);
     top: calc(50% - 90px);
+    z-index: 1000;
 }
 
 .employee-details{
     display: none !important;
     position: absolute !important;
-    left: calc(25% );
+    left: calc(50% - 390px);
 }
 
 .table-td{
@@ -327,3 +327,66 @@ border-radius: 20px !important;
     height: 30px !important;
     border-radius: 12px !important;
 }
+
+.error{
+    color: red !important;
+    font-size: small;
+}
+
+.card-scroll{
+    max-height: 78vh !important;
+    max-width: 780px !important;
+}
+
+
+.card-scroll::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  .card-scroll::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* color of the tracking area */
+  }
+  
+  .card-scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid rgb(255, 255, 255);  /* creates padding around scroll thumb */
+  }
+
+
+  .card-scroll-card{
+    max-height: 90vh !important;
+    max-width: 80vw !important;
+} 
+
+.card-scroll-card::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  .card-scroll-card::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* color of the tracking area */
+  }
+  
+  .card-scroll-card::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid rgb(255, 255, 255);  /* creates padding around scroll thumb */
+  }
+
+  #imgMale{
+    display: none;
+  }
+
+  #imgFemale{
+    display: none;
+  }
+
+  .image-box{
+    width: 100px ;
+    height: 100px;
+  }
+
+  #viewEmpImg{
+    width: 100px;
+    height: 100px;
+  }

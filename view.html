@@ -45,7 +45,7 @@
                                             class="fa-solid fa-house pe-2"></i>Dashboard</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i
+                                    <a class="nav-link" href="index.html"><i
                                             class="fa-solid fa-chart-simple pe-2"></i>Employees</a>
                                 </li>
                                 <li class="nav-item">
@@ -68,10 +68,10 @@
                 <div class="div-body d-flex flex-column p-3">
                     <header class="body-header d-flex justify-content-between  mb-3">
                         <div class="heading-body d-flex flex-column">
-                            <p class="mb-0">Dashboard / Employees</p>
+                            <p class="mb-0">Dashboard / Employees / Emplolyee Details</p>
                             <h4>Employees</h4>
                         </div>
-                        <div class="heading-search p-3 d-flex align-items-center gap-2">
+                        <!-- <div class="heading-search p-3 d-flex align-items-center gap-2">
                             <div class="input-group search-box-top flex-nowrap">
                                 <input type="text" class="form-control search-box ps-5" placeholder="Search"
                                     aria-label="Username" aria-describedby="addon-wrapping">
@@ -86,13 +86,13 @@
                                     <img src="images\Elipse 5.png" alt="">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </header>
 
                     <!-- body -->
 
-                    <div class="section-body  mb-3">
-                        <div class="card ">
+                    <div class="section-body d-flex justify-content-center mb-3">
+                        <div class="card card-scroll overflow-auto">
                             <div class="card-body">
 
 
@@ -157,6 +157,7 @@
                                             <div class="card label-card p-3">
                                                 <label for="">Address</label>
                                                 <label for="" id="address"></label>
+                                                <label for="" id="addressRest"></label>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -168,8 +169,10 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end">
-                                        <button class="btn btn-lg btn-danger btn-fill text-white ms-1 p-3 px-4 " id="deleteBtn">Delete</button>
-                                        <button class="btn btn-lg bg-color btn-fill text-white ms-1 p-3 px-4"  id="editBtn">Edit details</button>
+                                        <button class="btn btn-lg btn-danger btn-fill text-white ms-1 p-3 px-4 "
+                                            id="deleteBtn">Delete</button>
+                                        <button class="btn btn-lg bg-color btn-fill text-white ms-1 p-3 px-4"
+                                            id="editBtn">Edit details</button>
                                     </div>
 
 
@@ -197,74 +200,11 @@
 
             <!-- popup -->
 
-            <!-- employee details -->
-
-            <div class="card employee-details">
-                <div class="card-body  ">
-                    <div class="d-flex flex-column align-items-center card-body-details mb-5">
-                        <img src="images\Background Image.png" alt="">
-                        <div class="div-round">
-                            <img class="div-round-img" id="viewEmployeeImage" alt="">
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-center employee-details-name pt-3 mb-3">
-                        <h3 id="name">Mr. Michael Johnson</h3>
-                        <p id="email">michaeljohnson@example.com</p>
-                    </div>
-
-                    <div class="d-flex flex-column">
-                        <div class="row mb-3">
-
-
-
-                            <div class="col-4 ">
-                                <div class="card label-card p-3">
-                                    <label for="">Gender</label>
-                                    <label for=""> Male</label>
-                                </div>
-                            </div>
-                            <div class="col-4 ">
-                                <div class="card label-card p-3">
-                                    <label for="">Age</label>
-                                    <label for="">18</label>
-                                </div>
-                            </div>
-                            <div class="col-4 ">
-                                <div class="card label-card p-3">
-                                    <label for="">Date of Birth</label>
-                                    <label for="">20 December 1990</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- second -->
-
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <div class="card label-card p-3">
-                                    <label for="">Gender</label>
-                                    <label for=""> Male</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card label-card p-3">
-                                    <label for="">Age</label>
-                                    <label for="">18</label>
-                                </div>
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+ 
 
             <!-- edmployee edit -->
 
-            <div class="card card-employee-edit" id="empEdit">
+            <div class="card overflow-auto card-scroll-card card-employee-edit" id="empEdit">
                 <div class="card-body d-flex flex-column ">
                     <header>
                         <h2 class="card-heading pb-3 txt-color">Edit Employee</h2>
@@ -273,45 +213,46 @@
                     <div class="card-bd">
                         <div class="d-flex gap-3 align-items-center">
                             <input type="file" class="file-upload" id="viewEditEmp" onchange="avatarPreviewView()">
-                            <label  for="viewEditEmp"
+                            <label for="viewEditEmp"
                                 class="upload upload-image d-flex justify-content-center flex-column align-items-center mb-3">
-                                <img id="viewEditEmpImg" alt="">
+                                <img src="" class="image-box" id="viewEditEmpImg" alt="">
                             </label>
                             <!-- <div class="button ">
                                 <button class="btn btn-lg bg-light btn-cancel ms-1 btn-none p-3">Change</button>
                             </div> -->
-                            <label for="viewEditEmp" class="btn btn-lg bg-light btn-cancel ms-1 btn-none p-3">Change</label>
+                            <label for="viewEditEmp"
+                                class="btn btn-lg bg-light btn-cancel ms-1 btn-none p-3">Change</label>
                         </div>
 
 
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
-                                <label  class="form-label txt-color star mb-3">Salutaton </label>
+                                <label class="form-label txt-color star mb-3">Salutaton </label>
                                 <select id="editSalutation" class="form-select form-select-lg  text-secondary txt-in"
                                     aria-label="Large select example">
                                     <option selected class="">select</option>
                                     <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>     
+                                    <option value="Mrs">Mrs</option>
                                 </select>
-                                <label id="editSalutationError"></label>
+                                <label class="error" id="editSalutationError"></label>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
-                                <label  class="form-label txt-color star ">First Name </label>
+                                <label class="form-label txt-color star ">First Name </label>
                                 <div class="input-group ">
-                                    <input id="editFirstName" type="text" class="form-control txt-in" placeholder="john" aria-label="john"
-                                        aria-describedby="basic-addon2">
+                                    <input id="editFirstName" type="text" class="form-control txt-in" placeholder="john"
+                                        aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editFirstNameError"></label>
+                                <label class="error" id="editFirstNameError"></label>
 
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
-                                <label  class="form-label txt-color star ">Last Name </label>
+                                <label class="form-label txt-color star ">Last Name </label>
                                 <div class="input-group ">
-                                    <input id="editLastName" type="text" class="form-control txt-in" placeholder="doe" aria-label="doe"
-                                        aria-describedby="basic-addon2">
+                                    <input id="editLastName" type="text" class="form-control txt-in" placeholder="doe"
+                                        aria-label="doe" aria-describedby="basic-addon2">
                                 </div>
-                                <label id="editLastNameError"></label>
+                                <label class="error" id="editLastNameError"></label>
                             </div>
                         </div>
 
@@ -319,23 +260,24 @@
 
                         <div class="row ">
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star ">Email Address </label>
+                                <label class="form-label txt-color star ">Email Address </label>
                                 <div class="input-group ">
-                                    <input id="editEmail" type="text" class="form-control txt-in" placeholder="mail@simmple.com"
-                                        aria-label="john" aria-describedby="basic-addon2">
+                                    <input id="editEmail" type="text" class="form-control txt-in"
+                                        placeholder="mail@simmple.com" aria-label="john"
+                                        aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editEmailError"></label>
+                                <label class="error" id="editEmailError"></label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">Mobile Number </label>
+                                <label class="form-label txt-color star">Mobile Number </label>
                                 <div class="input-group ">
                                     <input id="editPhone" type="text" class="form-control txt-in"
                                         placeholder="enter your mobile number" aria-label="doe"
                                         aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editPhoneError"></label>
+                                <label class="error" id="editPhoneError"></label>
                             </div>
                         </div>
 
@@ -345,22 +287,21 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label for="" class="form-label txt-color star ">Username</label>
                                 <div class="input-group ">
-                                    <input  id="editUserName" type="txt" required class="form-control txt-in"
-                                        placeholder="enter Username" aria-label="john"
-                                        aria-describedby="basic-addon2">
+                                    <input id="editUserName" type="txt" required class="form-control txt-in"
+                                        placeholder="enter Username" aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editUserNameError"></label>
+                                <label class="error" id="editUserNameError"></label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <label for="" class="form-label txt-color star">Password </label>
                                 <div class="input-group ">
-                                    <input  id="editPassword" type="password" required class="form-control txt-in"
+                                    <input id="editPassword" type="password" required class="form-control txt-in"
                                         placeholder="enter your password" aria-label="doe"
                                         aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editPasswordError"></label>
+                                <label class="error" id="editPasswordError"></label>
                             </div>
                         </div>
 
@@ -368,44 +309,44 @@
 
                         <div class="row ">
                             <div class="col-lg-6 col-md-12 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">Date of Birth </label>
+                                <label class="form-label txt-color star">Date of Birth </label>
                                 <div class="input-group ">
                                     <input id="editDob" type="date" class="form-control txt-in">
 
                                 </div>
-                                <label id="editDobError"></label>
+                                <label class="error" id="editDobError"></label>
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">Gender </label>
+                                <label class="form-label txt-color star">Gender </label>
                                 <div>
                                     <div class="form-check form-check-inline">
                                         <input id="editMale" class="form-check-input" type="radio" name="gender"
-                                             value="male">
+                                            value="male">
                                         <label class="form-check-label  txt-color txt-400"
                                             for="inlineRadio1">Male</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input id="editFemale" class="form-check-input" type="radio" name="gender"
-                                             value="female">
+                                            value="female">
                                         <label class="form-check-label  txt-color txt-400"
                                             for="inlineRadio2">Female</label>
                                     </div>
                                 </div>
-                                <label id="editGenderError"></label>
+                                <label class="error" id="editGenderError"></label>
                             </div>
                         </div>
 
                         <!-- four -->
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <label  class="form-label txt-color star">Address </label>
+                                <label class="form-label txt-color star">Address </label>
                                 <div class="input-group ">
-                                    <input id="editAddress" type="text" class="form-control txt-in" placeholder="enter address"
-                                        aria-label="john" aria-describedby="basic-addon2">
+                                    <input id="editAddress" type="text" class="form-control txt-in"
+                                        placeholder="enter address" aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editAddressError"></label>
+                                <label class="error" id="editAddressError"></label>
                             </div>
                         </div>
 
@@ -415,12 +356,11 @@
                             <div class="col-12 mb-3">
                                 <label for="" class="form-label txt-color star">Qualification </label>
                                 <div class="input-group ">
-                                    <input  id="editQualification" type="text" required class="form-control txt-in"
-                                        placeholder="enter address" aria-label="john"
-                                        aria-describedby="basic-addon2">
+                                    <input id="editQualification" type="text" required class="form-control txt-in"
+                                        placeholder="enter address" aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editQualificationError"></label>
+                                <label class="error" id="editQualificationError"></label>
                             </div>
                         </div>
 
@@ -428,26 +368,26 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">Country </label>
+                                <label class="form-label txt-color star">Country </label>
                                 <select id="editCountry" class="form-select form-select-lg  text-secondary txt-in"
                                     aria-label="Large select example">
                                     <option selected class="">select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="USA">USA</option>
+                                    <option value="India">India</option>
+                                    <option value="UAE">UAE</option>
                                 </select>
-                                <label id="editCountryError"></label>
+                                <label class="error" id="editCountryError"></label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">State </label>
+                                <label class="form-label txt-color star">State </label>
                                 <select id="editState" class="form-select form-select-lg  text-secondary txt-in"
                                     aria-label="Large select example">
                                     <option selected class="">select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="LA">LA</option>
+                                    <option value="Dubai">Dubai</option>
                                 </select>
-                                <label id="editStateError"></label>
+                                <label class="error" id="editStateError"></label>
                             </div>
                         </div>
 
@@ -455,29 +395,31 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">City </label>
+                                <label class="form-label txt-color star">City </label>
                                 <div class="input-group ">
-                                    <input id="editCity" type="text" class="form-control txt-in" placeholder="enter city"
-                                        aria-label="john" aria-describedby="basic-addon2">
+                                    <input id="editCity" type="text" class="form-control txt-in"
+                                        placeholder="enter city" aria-label="john" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editCityError"></label>
+                                <label class="error" id="editCityError"></label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <label  class="form-label txt-color star">Pin/Zip </label>
+                                <label class="form-label txt-color star">Pin/Zip </label>
                                 <div class="input-group">
-                                    <input id="editPin" type="text" class="form-control txt-in" placeholder="enter pin/zip"
-                                        aria-label="doe" aria-describedby="basic-addon2">
+                                    <input id="editPin" type="text" class="form-control txt-in"
+                                        placeholder="enter pin/zip" aria-label="doe" aria-describedby="basic-addon2">
 
                                 </div>
-                                <label id="editPinError"></label>
+                                <label class="error" id="editPinError"></label>
                             </div>
 
                             <div class="d-flex justify-content-end">
                                 <div class="row">
                                     <div class="button ">
-                                        <button onclick="Close('empEdit')" class="btn btn-lg bg-light  ms-1 btn-none p-3">Cancel</button>
-                                        <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3" id="saveEdit">save
+                                        <button onclick="Close('empEdit')"
+                                            class="btn btn-lg bg-light  ms-1 btn-none p-3">Cancel</button>
+                                        <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3"
+                                            id="saveEdit">save
                                             changes</button>
                                     </div>
                                 </div>
@@ -495,6 +437,8 @@
                     </div>
                 </div>
 
+            </div>
+
             <!-- employee delete -->
 
             <div class="card" id="empDelete">
@@ -509,8 +453,10 @@
                         <div class="d-flex justify-content-end">
                             <div class="row">
                                 <div class="button ">
-                                    <button class="btn btn-lg bg-light  ms-1 btn-none p-3" onclick="Close('empDelete')">Cancel</button>
-                                    <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3 " id="deleteEmployee">Delete</button>
+                                    <button class="btn btn-lg bg-light  ms-1 btn-none p-3"
+                                        onclick="Close('empDelete')">Cancel</button>
+                                    <button class="btn btn-lg  bg-color btn-fill text-white ms-1 p-3 "
+                                        id="deleteEmployee">Delete</button>
                                 </div>
                             </div>
 
@@ -524,9 +470,8 @@
                 </div>
             </div>
 
+            <span id="show"></span>
         </div>
-
-        <span id="show"></span>
     </section>
 
     <script src="view.js"></script>

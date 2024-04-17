@@ -1,6 +1,4 @@
 
-
-
 function Close(id) {
     let idd = id;
     document.getElementById(idd).style.display = "none";
@@ -48,11 +46,17 @@ pageNation();
 }
 
 
-const input = document.getElementById('input')
 
+const input = document.getElementById('input')
+input.addEventListener('input' , () =>
+{
+  displayData(currentPage);
+});
 
 function displayData(page){
 
+
+document.getElementById('totalContnets').innerText = tableContents.length
   // search bar using filter
      let querry = input.value;
      console.log("querry :" + querry);
@@ -67,7 +71,24 @@ function displayData(page){
   let tableData = "";
   let i = start;
 
-  pageinatedData.map((values) => {
+  pageinatedData.filter((eventData) =>{
+
+    if(querry === ''){
+      return eventData
+    }
+    else if(eventData.firstName.toLowerCase().includes(querry.toLowerCase())){
+      return eventData
+    }
+    else if(eventData.email.toLowerCase().includes(querry.toLowerCase())){
+      return eventData
+    }
+    else if(eventData.gender.toLowerCase().includes(querry.toLowerCase())){
+      return eventData
+    }
+    else if(eventData.country.toLowerCase().includes(querry.toLowerCase())){
+      return eventData
+    }
+  }).map((values) => {
     i++;
 
     totalItems++;
@@ -105,6 +126,7 @@ function displayData(page){
 
 
 function pageNation(){
+
   let totalPages = Math.ceil(tableContents.length / itemsPerPage);
   const pageNationUl = document.getElementById('paginationContaioner')
   pageNationUl.innerHTML = '';
@@ -141,7 +163,7 @@ for(let i = 1; i<=totalPages ;i++ ){
   pageNationUl.appendChild(pageItems);
   pageItems.addEventListener('click' , () =>{
     currentpage = i ;
-    displayData(currentPage);
+    displayData(currentPage++);
 
   });
 }
@@ -398,15 +420,21 @@ function addEmpsubmit() {
 
         const profileImg = document.getElementById('img-upload');
         var imgObject = new FormData();
-        imgObject.append("avatar", profileImg.files[0]);
-        console.log("img added succesfully" , imgObject);
+        avatarImage = profileImg.files[0]
+  
+       
+          imgObject.append("avatar", profileImg.files[0]);
+          console.log("img added succesfully" , imgObject);
 
-         fetch(`http://localhost:3000/employees/${data.id}/avatar`,{
+          fetch(`http://localhost:3000/employees/${data.id}/avatar`,{
             method: "POST",
             body: imgObject,
-        });
+          });
         
         console.log(newData);
+        
+
+        
         
 
     })
@@ -436,7 +464,7 @@ function addEmpsubmit() {
 
 //   fetching data from json and planting it to empEdit
 
-awaitfetch(`http://localhost:3000/employees/${empid}` , {
+await fetch(`http://localhost:3000/employees/${empid}` , {
     method: "GET" ,
     headers: {
         "Content-Type": "application/json",
@@ -447,8 +475,8 @@ awaitfetch(`http://localhost:3000/employees/${empid}` , {
         console.log(data); //displaying all the data
 
 
-        // var image = document.getElementById('img-upload').src
-        // image = `http://localhost:3000/employees/${data.empid}/avatar`;
+        var image = document.getElementById('img-upload').src
+        image = `http://localhost:3000/employees/${data.empid}/avatar`;
 
 
         document.getElementById('editSalutation').value = data.salutation;
@@ -723,14 +751,17 @@ console.log(newData);
     .then(() =>{
         swal.fire({
             icon: "success",
-            title: "ADD EMPLOYEE SUCCESSFULL",
+            title: "EMPLOYEE UPDATED SUCCESSFULL",
             showConfirmButton: false,
             timer: 1500,
         });
         // end of img posting ---------------------------------------
+    }).then(() => {
+      Close('empEdit');
+      window.location.href = 'index.html'
     })
     
-    Close('empEdit');
+   
 }
 
 // Deleting Data from Json
@@ -759,7 +790,22 @@ function deleteEmployee(empid){
     })
     .then((data) => {
         console.log("Deleted");
-    })
+    }).then(() =>{
+      swal.fire({
+          icon: "success",
+          title: "EMPLOYEE DELETED SUCCESSFULL",
+          showConfirmButton: false,
+          timer: 1500,
+      }).then(() => {
+        Close('empDelete');
+        window.location.href = 'index.html'
+      })
+     
+      // end of img posting ---------------------------------------
+  })
+  
+  
+  
 }
 
 
