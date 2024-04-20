@@ -162,8 +162,8 @@ for(let i = 1; i<=totalPages ;i++ ){
 </li>`;
   pageNationUl.appendChild(pageItems);
   pageItems.addEventListener('click' , () =>{
-    currentpage = i ;
-    displayData(currentPage++);
+    currentPage = i ;
+    displayData(currentPage);
 
   });
 }
@@ -420,7 +420,7 @@ function addEmpsubmit() {
 
         const profileImg = document.getElementById('img-upload');
         var imgObject = new FormData();
-        avatarImage = profileImg.files[0]
+        // avatarImage = profileImg.files[0]
   
        
           imgObject.append("avatar", profileImg.files[0]);
@@ -431,21 +431,16 @@ function addEmpsubmit() {
             body: imgObject,
           });
         
-        console.log(newData);
-        
-
-        
-        
-
-    })
-    .then(() =>{
+          console.log(newData);
+        })
+        .then(() =>{
         swal.fire({
             icon: "success",
             title: "ADD EMPLOYEE SUCCESSFULL",
             showConfirmButton: false,
             timer: 1500,
+          });
         });
-    });
     Close('addEmployee');
 }
 
@@ -803,8 +798,6 @@ function deleteEmployee(empid){
      
       // end of img posting ---------------------------------------
   })
-  
-  
   
 }
 

@@ -223,7 +223,7 @@ function saveChanges(id) {
       })
       .then(() => {
         Close('empEdit');
-        
+        68
         location.reload(true);
       })
 
