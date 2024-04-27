@@ -1,3 +1,14 @@
+function overlayClose() {
+  document.getElementById('overlay').style.display = 'none'
+
+  document.getElementById('empEdit').style.display = "none";
+  document.getElementById('empDelete').style.display = "none";
+}
+
+function overlayOpen() {
+  document.getElementById('overlay').style.display = 'block'
+}
+
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
 console.log("received id is => ", id);
@@ -47,6 +58,10 @@ async function viewEmployee(id) {
       const image = document.getElementById('viewEmpImg');
       image.src = `http://localhost:3000/employees/${id}/avatar`
     })
+    .catch(err => {
+      alert("Invalid User")
+      window.location.href = 'index.html';
+})
   console.log("function add id = " + id);
 }
 // end----------------------------------------------
@@ -67,10 +82,9 @@ async function editEmployee(id) {
 
   let a = document.getElementById('empEdit')
   a.style.display = "block";
-  let b = document.getElementById('content')
-  b.style.filter = "blur(3px)";
+  document.getElementById('overlay').style.display = 'block'
 
-  //   fetching data from json and planting it to empEdit
+  //fetching data from json and planting it to empEdit
 
   await fetch(`http://localhost:3000/employees/${id}`, {
     method: "GET",
@@ -106,9 +120,8 @@ async function editEmployee(id) {
       // gender  
 
       document.querySelector(`input[name='gender'][value='${data.gender}']`).checked = true;
-
-
     })
+    .catch(err => alert(err))
 
   //  image preview in edit employee form
 
@@ -126,13 +139,14 @@ async function editEmployee(id) {
       saveChanges(id);
     }
   })
+  clearEditLabel()
 }
 
-// function avatarPreviewView() {
-//   const preview = document.getElementById("viewEditEmpImg");
-//   preview.src = URL.createObjectURL(event.target.files[0]);
+function avatarPreviewView() {
+  const preview = document.getElementById("viewEditEmpImg");
+  preview.src = URL.createObjectURL(event.target.files[0]);
 
-// }
+}
 // posting edited data to json
 
 function saveChanges(id) {
@@ -194,7 +208,13 @@ function saveChanges(id) {
     body: JSON.stringify(newData)
   })
     .then((response) => {
-      return response.json();
+      if(!response.ok){
+        console.log(response);
+        alert('Something Went Wrong');
+      }
+      else{
+        return response.json();
+      }
     })
     .then((data) => {
       console.log("Data posted successfully:", data);
@@ -209,10 +229,17 @@ function saveChanges(id) {
       fetch(`http://localhost:3000/employees/${id}/avatar`, {
         method: "POST",
         body: imgObjectView,
-      });
+      })
+      .then((response) => {
+        if(!response.ok){
+          console.log('image not added');
+          alert('image not added')
+        }
+      })
 
       console.log(newData);
-
+      Close('empEdit');
+      overlayClose()
     })
     .then(() => {
       swal.fire({
@@ -222,16 +249,10 @@ function saveChanges(id) {
         timer: 1500,
       })
       .then(() => {
-        Close('empEdit');
-        68
-        location.reload(true);
+        viewEmployee(id);
       })
 
     })
-  
-
-  //  window.location.href = `view.html?${id}`; 
-  // 
 
 }
 
@@ -245,8 +266,8 @@ empDeletee.addEventListener("click", () => {
 
   let a = document.getElementById('empDelete')
   a.style.display = "block";
-  let b = document.getElementById('content')
-  b.style.filter = "blur(3px)";
+  document.getElementById('overlay').style.display = 'block'
+
 
 })
 
@@ -277,10 +298,7 @@ deleteEmployee.addEventListener("click", () => {
           showConfirmButton: false,
           timer: 1500,
     })
-      .then(() => {
-        Close('empDelete');
-        window.location.href = 'index.html'
-      })
+    window.location.href = 'index.html'
     })
   
 })
@@ -298,6 +316,24 @@ function Close(id) {
 
 
 // edit employee validation
+
+function clearEditLabel(){
+  document.getElementById("editSalutationError").textContent = "";
+  document.getElementById("editFirstNameError").textContent = "";
+  document.getElementById("editLastNameError").textContent = "";
+  document.getElementById("editEmailError").textContent = "";
+  document.getElementById("editPhoneError").textContent = "";
+  document.getElementById("editUserNameError").textContent = "";
+  document.getElementById("editPasswordError").textContent = "";
+  document.getElementById("editDobError").textContent = "";
+  document.getElementById("editGenderError").textContent = "";
+  document.getElementById("editAddressError").textContent = "";
+  document.getElementById("editQualificationError").textContent = "";
+  document.getElementById("editCountryError").textContent = "";
+  document.getElementById("editStateError").textContent = "";
+  document.getElementById("editCityError").textContent = "";
+  document.getElementById("editPinError").textContent = "";
+}
 
 function EditFormValidation() {
   const salutation = document.getElementById("editSalutation").value.trim();
