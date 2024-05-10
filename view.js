@@ -11,7 +11,7 @@ function overlayOpen() {
 
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
-console.log("received id is => ", id);
+// console.log("received id is => ", id);
 
 
 viewEmployee(id);
@@ -26,7 +26,7 @@ async function viewEmployee(id) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
 
       let name = data.salutation + " " + data.firstName + " " + data.lastName;
       let addressRest = data.city + " " + data.state + " " +data.country + " " + data.pin
@@ -42,12 +42,12 @@ async function viewEmployee(id) {
 
       const [day, month, ageYear] = data.dob.split("-");
       const newyear = `${ageYear}`;
-      console.log(newyear);
+      // console.log(newyear);
 
 
       const date = new Date();
       let year = date.getFullYear();
-      console.log(year);
+      // console.log(year);
       const agee = year - newyear
 
       document.getElementById('age').innerHTML = agee;
@@ -62,7 +62,7 @@ async function viewEmployee(id) {
       alert("Invalid User")
       window.location.href = 'index.html';
 })
-  console.log("function add id = " + id);
+  // console.log("function add id = " + id);
 }
 // end----------------------------------------------
 
@@ -78,7 +78,7 @@ editbtn.addEventListener("click", () => {
 
 async function editEmployee(id) {
 
-  console.log("employee id = " + id);
+  // console.log("employee id = " + id);
 
   let a = document.getElementById('empEdit')
   a.style.display = "block";
@@ -94,7 +94,7 @@ async function editEmployee(id) {
   }) //getting all the data in the id
     .then((response) => response.json())
     .then((data) => {
-      console.log(data); //displaying all the data
+      // console.log(data); //displaying all the data
 
       document.getElementById('editSalutation').value = data.salutation;
       document.getElementById('editFirstName').value = data.firstName;
@@ -150,9 +150,7 @@ function avatarPreviewView() {
 // posting edited data to json
 
 function saveChanges(id) {
-  console.log(id);
-
-
+  // console.log(id);
   const salutation = document.getElementById("editSalutation").value;
   const firstName = document.getElementById("editFirstName").value;
   const lastName = document.getElementById("editLastName").value;
@@ -177,7 +175,7 @@ function saveChanges(id) {
   let day = parts[2];
   // Construct the reversed date string
   let reversedDateString = `${day}-${month}-${year}`;
-  console.log(reversedDateString);
+  // console.log(reversedDateString);
   const dobb = reversedDateString;
 
   const newData = {
@@ -198,7 +196,7 @@ function saveChanges(id) {
     password
   }
 
-  console.log("new data fetched" + newData);
+  // console.log("new data fetched" + newData);
 
   fetch(`http://localhost:3000/employees/${id}`, {
     method: "PUT",
@@ -210,21 +208,21 @@ function saveChanges(id) {
     .then((response) => {
       if(!response.ok){
         console.log(response);
-        alert('Something Went Wrong');
+        alert('Something went Wrong')
       }
       else{
         return response.json();
       }
     })
     .then((data) => {
-      console.log("Data posted successfully:", data);
+      // console.log("Data posted successfully:", data);
 
       //  posting image to json ----------------------------------------
 
       const profileImgEditView = document.getElementById('viewEditEmp');
       var imgObjectView = new FormData();
       imgObjectView.append("avatar", profileImgEditView.files[0]);
-      console.log("img added succesfully", imgObjectView);
+      // console.log("img added succesfully", imgObjectView);
 
       fetch(`http://localhost:3000/employees/${id}/avatar`, {
         method: "POST",
@@ -233,12 +231,12 @@ function saveChanges(id) {
       .then((response) => {
         if(!response.ok){
           console.log('image not added');
-          alert('image not added')
         }
       })
 
-      console.log(newData);
+      // console.log(newData);
       Close('empEdit');
+      // document.getElementById('overlay').style.display = 'none'
       overlayClose()
     })
     .then(() => {
@@ -274,7 +272,7 @@ empDeletee.addEventListener("click", () => {
 let deleteEmployee = document.getElementById("deleteEmployee");
 deleteEmployee.addEventListener("click", () => {
 
-  console.log("employee id = " + id);
+  // console.log("employee id = " + id);
 
 
 
@@ -285,19 +283,18 @@ deleteEmployee.addEventListener("click", () => {
     }
   })
     .then((response) => {
-      return response.json;
+      if(!response.ok){
+        alert('Something Went Wrong')
+      }else{
+        return response.json;
+      }
     })
     .then((data) => {
       console.log("Deleted");
     })
 
     .then(() =>{
-      swal.fire({
-          icon: "success",
-          title: "EMPLOYEE DELETED SUCCESSFULL",
-          showConfirmButton: false,
-          timer: 1500,
-    })
+      
     window.location.href = 'index.html'
     })
   
@@ -311,6 +308,7 @@ function Close(id) {
   let idd = id;
   document.getElementById(idd).style.display = "none";
   document.getElementById('content').style.filter = "blur(0px)";
+  document.getElementById('overlay').style.display = 'none'
 }
 
 
@@ -410,34 +408,43 @@ function EditFormValidation() {
 
   if (salutation == "" || salutation == "select") {
     document.getElementById('editSalutationError').textContent = "* saluration is needed"
+    isValid = false
   }
 
   if (username == "") {
     document.getElementById('editUserNameError').textContent = "* username is needed"
+    isValid = false
   }
 
   if (address == "") {
     document.getElementById('editAddressError').textContent = "* address is needed"
+    isValid = false
   }
 
   if (qualifications == "") {
     document.getElementById('editQualificationError').textContent = "* qualification is needed"
+    isValid = false
   }
 
   if (country == "" || country == "select") {
     document.getElementById('editCountryError').textContent = "* country is needed"
+    isValid = false
   }
 
   if (state == "" || state == "select") {
     document.getElementById('editStateError').textContent = "* state is needed"
+    isValid = false
   }
 
-  if (city == "" || city == "select") {
+  if (city == "") {
     document.getElementById('editCityError').textContent = "* city is needed"
+    isValid = false
+    
   }
 
   if (pin == "") {
     document.getElementById('editPinError').textContent = "* pin is needed"
+    isValid = false
   }
 
   // validation text event
@@ -445,7 +452,7 @@ function EditFormValidation() {
   document.getElementById('empEdit').addEventListener('input', (event) => {
     inputId = event.target.id;
     const errorId = `${inputId}Error`;
-    console.log("error id is ", errorId);
+    // console.log("error id is ", errorId);
     document.getElementById(errorId).textContent = "";
   })
 

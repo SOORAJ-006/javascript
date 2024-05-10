@@ -43,7 +43,13 @@ async function fetchData() {
       // table count
       document.getElementById('count').addEventListener('change', () => {
         dataCount = document.getElementById('count');
-        itemsPerPage = parseInt(dataCount.value);
+        
+        if(dataCount.value == 'max'){
+          itemsPerPage = objectData.length
+        }
+        else{
+          itemsPerPage = parseInt(dataCount.value);
+        }
         displayData(currentPage);
         pageNation();
 
@@ -60,7 +66,7 @@ async function fetchData() {
 
 const input = document.getElementById('input')
 input.addEventListener('input', () => {
-  displayData(currentPage);
+  displayData(currentPage); 
 });
 
 function displayData(page) {
@@ -74,13 +80,7 @@ function displayData(page) {
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage
 
-  let pageinatedData = tableContents.slice(start, end);
-  console.log("Converted data is", tableContents);
-
-  let tableData = "";
-  let i = start;
-
-  pageinatedData.filter((eventData) => {
+  let pageinatedData = tableContents  .filter((eventData) => {
 
     if (querry === '') {
       return eventData
@@ -97,7 +97,32 @@ function displayData(page) {
     else if (eventData.country.toLowerCase().includes(querry.toLowerCase())) {
       return eventData
     }
-  }).map((values) => {
+  }).slice(start, end);
+  // console.log("Converted data is", tableContents);
+
+  let tableData = "";
+  let i = start;
+
+  pageinatedData
+  // .filter((eventData) => {
+
+  //   if (querry === '') {
+  //     return eventData
+  //   }
+  //   else if (eventData.firstName.toLowerCase().includes(querry.toLowerCase())) {
+  //     return eventData
+  //   }
+  //   else if (eventData.email.toLowerCase().includes(querry.toLowerCase())) {
+  //     return eventData
+  //   }
+  //   else if (eventData.gender.toLowerCase().includes(querry.toLowerCase())) {
+  //     return eventData
+  //   }
+  //   else if (eventData.country.toLowerCase().includes(querry.toLowerCase())) {
+  //     return eventData
+  //   }
+  // })
+  .map((values) => {
     i++;
 
     totalItems++;
@@ -200,7 +225,7 @@ function pageNation() {
 
 
 // ---------------------------Add Form Validation-------------------------------
-function clearEditLabel(){
+function clearEditLabel() {
   document.getElementById("editSalutationError").textContent = "";
   document.getElementById("editFirstNameError").textContent = "";
   document.getElementById("editLastNameError").textContent = "";
@@ -215,10 +240,10 @@ function clearEditLabel(){
   document.getElementById("editCountryError").textContent = "";
   document.getElementById("editStateError").textContent = "";
   document.getElementById("editCityError").textContent = "";
-  document.getElementById("editPinError").textContent = "";
+  document.getElementById("editPinError").textContent = "";
 }
 
-function clearAddLabel(){
+function clearAddLabel() {
   document.getElementById("addSalutationError").textContent = "";
   document.getElementById("addFirstNameError").textContent = "";
   document.getElementById("addLastNameError").textContent = "";
@@ -233,15 +258,33 @@ function clearAddLabel(){
   document.getElementById("addCountryError").textContent = "";
   document.getElementById("addStateError").textContent = "";
   document.getElementById("addCityError").textContent = "";
-  document.getElementById("addPinError").textContent = "";
+  document.getElementById("addPinError").textContent = "";
 }
+
+function clearAddForm() {
+  document.getElementById("addSalutation").value = "";
+  document.getElementById("addFirstName").value = "";
+  document.getElementById("addLastName").value = "";
+  document.getElementById("addEmail").value = "";
+  document.getElementById("addPhone").value = "";
+  document.getElementById("adduserName").value = "";
+  document.getElementById("addPassword").value = "";
+  document.getElementById("addDob").value = "";
+  document.getElementById("addAddress").value = "";
+  document.getElementById("addQualification").value = "";
+  document.getElementById("addCountry").value = "";
+  document.getElementById("addState").value = "";
+  document.getElementById("addCity").value = "";
+  document.getElementById("addPin").value = "";
+  document.querySelector(`input[name='gender'][value='']`).checked = true;
+}
+
 function addFormValidation() {
   const salutation = document.getElementById("addSalutation").value.trim();
   const firstName = document.getElementById("addFirstName").value.trim();
   const lastName = document.getElementById("addLastName").value.trim();
   const email = document.getElementById("addEmail").value.trim();
   const phone = document.getElementById("addPhone").value.trim();
-
   const address = document.getElementById("addAddress").value.trim();
   const country = document.getElementById("addCountry").value.trim();
   const state = document.getElementById("addState").value.trim();
@@ -367,7 +410,7 @@ function addFormValidation() {
 
 // ------------------------------ADD EMPLOYEE ---------------------------------
 
-function AddImgPreview(){
+function AddImgPreview() {
   let preview = document.getElementById("addEmpImg");
   preview.style.display = 'block'
   preview.src = URL.createObjectURL(event.target.files[0]);
@@ -445,15 +488,15 @@ function postData(newData) {
   })
 
     .then(response => {
-      
-      if(!response.ok){
+
+      if (!response.ok) {
         console.log(response);
-      alert('Fields connot be empty')
+        alert('Fields connot be empty')
       }
-      else{
+      else {
         return response.json();
-      }  
-      return response.json();
+      }
+      // return response.json();
     })
     .then(data => {
 
@@ -477,12 +520,12 @@ function postData(newData) {
         method: "POST",
         body: imgObject,
       })
-      .then((response) => {
-        if(!response){
-          console.log('image not addedddd');
-        }
-      })
-      .catch(err => console.log(err))
+        .then((response) => {
+          if (!response) {
+            console.log('image not addedddd');
+          }
+        })
+        .catch(err => console.log(err))
     })
     .then(() => {
       swal.fire({
@@ -492,12 +535,13 @@ function postData(newData) {
         timer: 1500,
       });
       Close('addEmployee')
+
       fetchData()
     })
     .catch(err => {
       console.log('error ' + err);
     });
-    
+  clearAddForm()
 }
 
 
@@ -561,10 +605,10 @@ async function editEmployee(empid) {
   editpreview.src = `http://localhost:3000/employees/${empid}/avatar`;
 
 
-  let editsubmit = document.getElementById("saveEdit");
-  editsubmit.addEventListener("click", () => {
-    const validation = EditFormValidation();
-    if (!validation) {
+  const editsubmit = document.getElementById("saveEdit");
+  editsubmit.addEventListener('click', () => {
+    const editValidation = EditFormValidation();
+    if (!editValidation) {
       return;
     } else {
       saveChanges(empid);
@@ -659,35 +703,50 @@ function EditFormValidation() {
 
   if (salutation == "" || salutation == "select") {
     document.getElementById('editSalutationError').textContent = "* saluration is needed"
+    isValid = false
+
   }
 
   if (username == "") {
     document.getElementById('editUserNameError').textContent = "* username is needed"
+    isValid = false
+
   }
 
   if (address == "") {
     document.getElementById('editAddressError').textContent = "* address is needed"
+    isValid = false
+
   }
 
   if (qualifications == "") {
     document.getElementById('editQualificationError').textContent = "* qualification is needed"
-    
+    isValid = false
+
   }
 
   if (country == "" || country == "select") {
     document.getElementById('editCountryError').textContent = "* country is needed"
+    isValid = false
+
   }
 
   if (state == "" || state == "select") {
     document.getElementById('editStateError').textContent = "* state is needed"
+    isValid = false
+
   }
 
   if (city == "" || city == "select") {
     document.getElementById('editCityError').textContent = "* city is needed"
+    isValid = false
+
   }
 
   if (pin == "") {
     document.getElementById('editPinError').textContent = "* pin is needed"
+    isValid = false
+
   }
 
   // validation text event
@@ -774,17 +833,17 @@ function saveChanges(empid) {
     body: JSON.stringify(newData)
   })
     .then((response) => {
-      if(!response.ok){
+      if (!response.ok) {
         console.log(response);
-        alert('Something Went Wrong');
+        alert('something went Wrong')
       }
-      else{
+      else {
         return response.json();
       }
-      
+
     })
     .then((data) => {
-  
+
       // posting image through edit form----------------------------------
 
       const profileimg = document.getElementById('imge-upload');
@@ -795,13 +854,12 @@ function saveChanges(empid) {
         method: "POST",
         body: imgObject,
       })
-      .then((response) => {
-        if(!response.ok){
-          console.log('image not added');
-          alert('image not added')
-        }
-      })
-     
+        .then((response) => {
+          if (!response.ok) {
+            console.log('image not added');
+          }
+        })
+
       // tableContents.unshift(newData);
       console.log(newData);
       // displayData(currentPage);
@@ -842,16 +900,16 @@ function confirmDelete(id) {
     }
   })
     .then((response) => {
-      if(!response.ok){
+      if (!response.ok) {
         Close('empDelete');
         alert('Something Went Wrong')
       }
-      else{
+      else {
         return response.json;
       }
-    })   
+    })
     .then(() => {
-      
+
       swal.fire({
         icon: "success",
         title: "EMPLOYEE DELETED SUCCESSFULL",
@@ -864,3 +922,67 @@ function confirmDelete(id) {
 }
 
 
+// filter
+
+function filter() {
+  let querry = input.value;
+
+  fetch(`http://localhost:3000/employees`)
+    .then((data) => {
+      return data.json();
+    })
+    .then((objectData) => {
+      tableContents = objectData;
+    });
+
+  tableContents.filter((eventData) => {
+
+    if (querry === '') {
+      return eventData
+    }
+    else if (eventData.firstName.toLowerCase().includes(querry.toLowerCase())) {
+      return eventData
+    }
+    else if (eventData.email.toLowerCase().includes(querry.toLowerCase())) {
+      return eventData
+    }
+    else if (eventData.gender.toLowerCase().includes(querry.toLowerCase())) {
+      return eventData
+    }
+    else if (eventData.country.toLowerCase().includes(querry.toLowerCase())) {
+      return eventData
+    }
+  }).map((values) => {
+    i++;
+
+    totalItems++;
+
+    let slNumber = i > 9 ? `#${i}` : `#0${i}`;
+
+    tableData += `<tr>
+            <th id="id">${slNumber}</th>
+            <td id="Name"><img class="emp-img" src="http://localhost:3000/employees/${values.id}/avatar"> ${values.salutation} ${values.firstName} ${values.lastName}</td>
+            <td id="Email">${values.email}</td>
+            <td id="Mob">${values.phone}</td>
+            <td id="Gender">${values.gender}</td>
+            <td id="Dob">${values.dob}</td>
+            <td id="Country">${values.country}</td>
+            <td><div class="dropdown">
+                <button class="btn btn-secondary " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li onclick="viewEmployee('${values.id}')"><a class="dropdown-item" href="view.html?id=${values.id}">View Details</a></li>
+                  <li onclick="editEmployee('${values.id}')"><a class="dropdown-item" href="#">Edit </a></li>
+                  <li onclick="deleteEmployee('${values.id}')"><a class="dropdown-item" href="#">Delete</a></li>
+                </ul>
+              </div>
+            </td>
+        </tr>`
+
+    // console.log("table"+"  " + objectData.length);
+
+  });
+
+  document.getElementById("tableBody").innerHTML = tableData;
+}   
